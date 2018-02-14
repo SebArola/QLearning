@@ -1,8 +1,8 @@
 from enum import Enum
 class Type(Enum):
-    Entree=1
-    Mur=2
-    Libre=3
-    Sortie=4
-    Piege=5
+    Entree=0
+    Mur= -200
+    Libre=0
+    Sortie=2
+    Piege=-1
     

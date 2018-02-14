@@ -1,5 +1,6 @@
 from Case import Case
 from Type import Type
+from Deplacement import Deplacement
 
 class Labyrinthe:
     def __init__(self):
@@ -15,4 +16,24 @@ class Labyrinthe:
             self.labyrinthe.append([])
             for j in range(10):
                 self.labyrinthe[i].append(Case(Type.Libre, i,j))
-                
+    
+    def deplacement_possible(self, case):
+        deplacement_possible = []
+        for i in range(case.x-1 ,case.x+1 ):
+            for j in range(case.y-1, case.y+1):
+                if self.labyrinthe[i][j].type != Type.Mur :
+                    deplacement_possible.append(self.labyrinthe[i][j])
+        return deplacement_possible
+    
+    
+    
+    def se_deplacer(self, case, deplacement):
+        renfort = 0
+        if deplacement == Deplacement.NORD or deplacement == Deplacement.SUD:
+            case_arriver = self.labyrinthe[case.x+deplacement][case.y]
+        else:
+            case_arriver = self.labyrinthe[case.x][case.y+deplacement]
+        
+        
+        
+        return (renfort, case_arriver)                
