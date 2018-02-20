@@ -5,5 +5,7 @@ class Case:
        self.x = posX
        self.y = posY
     
+    def __repr__(self):
+        return '('+str(self.x)+','+str(self.y)+')'
     def equal(self, case):
         return self.x == case.x and self.y == case.y 

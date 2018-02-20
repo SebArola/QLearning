@@ -22,17 +22,19 @@ class Labyrinthe:
     
     def deplacement_possible(self, case):
         deplacement_possible = []
-        for i in range(case.x-1 ,case.x+1 ):
-            for j in range(case.y-1, case.y+1):
-                if self.labyrinthe[i][j].type != Type.Mur :
-                    if i-case.x==1 :
-                        deplacement_possible.append(Deplacement.EST)
-                    elif i-case.x == -1:
-                        deplacement_possible.append(Deplacement.OUEST)
-                    elif j-case.y == 1 :
-                        deplacement_possible.append(Deplacement.SUD)
-                    elif j-case.y == -1 :
-                        deplacement_possible.append(Deplacement.NORD)
+        for i in range(case.x-1 ,case.x+2 ):
+            if i>=0 and i<10 :
+                for j in range(case.y-1, case.y+2):
+                    if j>=0 and j<10 :
+                        if self.labyrinthe[i][j].type != Type.Mur :
+                            if i-case.x==1 :
+                                deplacement_possible.append(Deplacement.EST)
+                            elif i-case.x == -1:
+                                deplacement_possible.append(Deplacement.OUEST)
+                            elif j-case.y == 1 :
+                                deplacement_possible.append(Deplacement.SUD)
+                            elif j-case.y == -1 :
+                                deplacement_possible.append(Deplacement.NORD)
                     
         return deplacement_possible
     

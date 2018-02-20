@@ -16,17 +16,21 @@ class Robot:
         
     def maxQ(self,case):
         renfort = -10000
+        cMax = 0
+        dMax = 0
         for (c, d) in self.Q :
             if case.equal(c):
                 if renfort < self.Q[(c,d)]:
                     renfort = self.Q[(c,d)]
-        return renfort
+                    cMax = c
+                    dMax = d
+        return (renfort,cMax,dMax)
         
     def exploration(self):
         deplacement = self.lab.deplacement_possible(self.case)
         randi = random.randint(0, len(deplacement)-1)
         (renfort, case_arriver) = self.lab.se_deplacer(self.case, deplacement[randi])
-        self.Q[(self.case, deplacement[randi])] = renfort + self.gamma * self.maxQ(case_arriver)
+        self.Q[(self.case, deplacement[randi])] = renfort + self.gamma * self.maxQ(case_arriver)[0]
         self.case = case_arriver
       
     def QLearning(self):
@@ -34,10 +38,15 @@ class Robot:
         while(i<self.nb_deplacement_max):
             self.exploration()
             i+=1
-        print("Q :", end='')
-        print(self.Q)
+        self.afficherQ()
     
-    #def afficherQ(self):
+    def afficherQ(self):
+        for i in range(10):
+            for j in range(10):
+                (r,c,d) = self.maxQ(self.lab.labyrinthe[i][j])
+                
+                print(str((c,d)) + ' ', end='')
+            print()
         
     
 lab = Labyrinthe()
@@ -45,5 +54,5 @@ lab.afficherLab()
 robot = Robot(lab,200)
 robot.QLearning()
 
-print(Deplacement.NORD == Deplacement.OUEST)
+
     

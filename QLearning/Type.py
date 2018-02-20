@@ -5,4 +5,5 @@ class Type(Enum):
     Libre=-1
     Sortie=2
     Piege=-1
+           
     
