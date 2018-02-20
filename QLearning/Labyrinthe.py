@@ -5,9 +5,8 @@ from Deplacement import Deplacement
 class Labyrinthe:
     def __init__(self):
         self.labyrinthe = []
-        self.arrive
-        self.depart
-        
+        self.arrive = 0
+        self.depart = 0
         self.chargerLabyrinthe()
         
     def chargerLabyrinthe(self):
@@ -18,6 +17,8 @@ class Labyrinthe:
                 self.labyrinthe[i].append(Case(Type.Libre, i,j))
         self.depart = (0,0)
         self.arrive = (9,9)
+        self.labyrinthe[0][0].type = Type.Entree
+        self.labyrinthe[9][9].type = Type.Sortie
     
     def deplacement_possible(self, case):
         deplacement_possible = []
@@ -40,7 +41,7 @@ class Labyrinthe:
     def se_deplacer(self, case, deplacement):
         renfort = 0
         if deplacement == Deplacement.NORD or deplacement == Deplacement.SUD:
-            case_arriver = self.labyrinthe[case.x+deplacement.value][case.y]
+            case_arriver = self.labyrinthe[case.x+deplacement.value][int(case.y/abs(deplacement.value))]
         else:
             case_arriver = self.labyrinthe[case.x][case.y+deplacement.value]
         renfort = case_arriver.type.value        
@@ -51,3 +52,9 @@ class Labyrinthe:
     
     def getDepart(self):
         return self.depart
+    
+    def afficherLab(self):
+        for i in range(10):
+            for j in range(10):
+                print(str(self.labyrinthe[i][j].type) + ' ', end='')
+            print()
