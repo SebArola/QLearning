@@ -24,7 +24,15 @@ class Labyrinthe:
         for i in range(case.x-1 ,case.x+1 ):
             for j in range(case.y-1, case.y+1):
                 if self.labyrinthe[i][j].type != Type.Mur :
-                    deplacement_possible.append(self.labyrinthe[i][j])
+                    if i-case.x==1 :
+                        deplacement_possible.append(Deplacement.EST)
+                    elif i-case.x == -1:
+                        deplacement_possible.append(Deplacement.OUEST)
+                    elif j-case.y == 1 :
+                        deplacement_possible.append(Deplacement.SUD)
+                    elif j-case.y == -1 :
+                        deplacement_possible.append(Deplacement.NORD)
+                    
         return deplacement_possible
     
     
