@@ -39,9 +39,7 @@ class Labyrinthe:
                         deplacement_possible.append(Deplacement.OUEST)
         #print(deplacement_possible)          
         return deplacement_possible
-    
-    
-    
+     
     def se_deplacer(self, case, deplacement):
         renfort = 0
         if deplacement == Deplacement.NORD or deplacement == Deplacement.SUD:
