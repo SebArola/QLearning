@@ -29,6 +29,7 @@ class Robot:
     def exploration(self):
         deplacement = self.lab.deplacement_possible(self.case)
         randi = random.randint(0, len(deplacement)-1)
+        print(deplacement[randi])
         (renfort, case_arriver) = self.lab.se_deplacer(self.case, deplacement[randi])
         self.Q[(self.case, deplacement[randi])] = renfort + self.gamma * self.maxQ(case_arriver)[0]
         self.case = case_arriver
@@ -51,7 +52,7 @@ class Robot:
     
 lab = Labyrinthe()
 lab.afficherLab()
-robot = Robot(lab,2000)
+robot = Robot(lab,1000)
 robot.QLearning()
 
 
