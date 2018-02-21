@@ -43,9 +43,9 @@ class Labyrinthe:
     def se_deplacer(self, case, deplacement):
         renfort = 0
         if deplacement == Deplacement.NORD or deplacement == Deplacement.SUD:
-            case_arriver = self.labyrinthe[case.x+deplacement.value][int(case.y/abs(deplacement.value))]
+            case_arriver = self.labyrinthe[case.x][int(case.y+deplacement.value/abs(deplacement.value))]
         else:
-            case_arriver = self.labyrinthe[case.x][case.y+deplacement.value]
+            case_arriver = self.labyrinthe[case.x+deplacement.value][case.y]
         renfort = case_arriver.type.value        
         return (renfort, case_arriver)
     

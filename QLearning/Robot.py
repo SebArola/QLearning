@@ -51,7 +51,7 @@ class Robot:
     
 lab = Labyrinthe()
 lab.afficherLab()
-robot = Robot(lab,200)
+robot = Robot(lab,2000)
 robot.QLearning()
 
 
