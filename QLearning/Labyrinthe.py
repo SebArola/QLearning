@@ -2,36 +2,37 @@ from Case import Case
 from Type import Type
 from Deplacement import Deplacement
 
+
 class Labyrinthe:
-    def __init__(self):
+    def __init__(self, taille):
         self.labyrinthe = []
         self.arrive = 0
         self.depart = 0
-        self.chargerLabyrinthe()
+        self.taille = taille
+        self.chargerLabyrinthe(taille)
         
-    def chargerLabyrinthe(self):
+    def chargerLabyrinthe(self,taille):
         #Creation manuel du labyrinthe pour avancer rapidement
-        for i in range(10):
+        for i in range(taille):
             self.labyrinthe.append([])
-            for j in range(10):
+            for j in range(taille):
                 self.labyrinthe[i].append(Case(Type.Libre, i,j))
         self.depart = (0,0)
-        self.arrive = (9,9)
+        self.arrive = (taille-1,taille-1)
         self.labyrinthe[0][0].type = Type.Entree
-        self.labyrinthe[9][9].type = Type.Sortie
+        self.labyrinthe[taille-1][taille-1].type = Type.Sortie
     
     def deplacement_possible(self, case):
         deplacement_possible = []
         for i in range(case.x-1 ,case.x+2 ):
-            print( case.x+i-case.x)
-            if i>=0 and i<10 :
+            if i>=0 and i<self.taille :
                 if self.labyrinthe[i][case.y].type != Type.Mur :
                     if i-case.x==1 :
                         deplacement_possible.append(Deplacement.SUD)
                     elif i-case.x == -1:
                         deplacement_possible.append(Deplacement.NORD)
         for j in range(case.y-1, case.y+2):
-            if j>=0 and j<10 :
+            if j>=0 and j<self.taille :
                 if self.labyrinthe[case.x][j].type != Type.Mur :         
                     if j-case.y == 1 :
                         deplacement_possible.append(Deplacement.EST)
@@ -56,7 +57,7 @@ class Labyrinthe:
         return self.depart
     
     def afficherLab(self):
-        for i in range(10):
-            for j in range(10):
-                print(str(self.labyrinthe[i][j].type) + ' ', end='')
+        for i in range(self.taille):
+            for j in range(self.taille):
+                print(str(self.labyrinthe[i][j].type.name) + ' ', end='')
             print()
