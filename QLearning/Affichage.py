@@ -23,13 +23,15 @@ class Affichage():
     for i in range(10):
         for j in range(10):
              if(labyrinthe[i][j] == 'v'):
-                 can.create_rectangle(i*size, j*size, i*size+size, j*size+size, fill = "white")
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "white")
              if(labyrinthe[i][j] == 'e'):
-                 can.create_rectangle(i*size, j*size, i*size+size, j*size+size, fill = "green")
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "green")
              if(labyrinthe[i][j] == 'm'):
-                 can.create_rectangle(i*size, j*size, i*size+size, j*size+size, fill = "grey")
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "grey")
              if(labyrinthe[i][j] == 's'):
-                 can.create_rectangle(i*size, j*size, i*size+size, j*size+size, fill = "red")
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "red")
              if(labyrinthe[i][j] == 'p'):
-                 can.create_rectangle(i*size, j*size, i*size+size, j*size+size, fill = "orange")    
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "orange")    
+             if(labyrinthe[i][j] == 'r'):
+                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "blue")  
     fenetre.mainloop()
