@@ -11,34 +11,34 @@ import tkinter as tk
 from ChargerFichier import ChargerFichier 
 
 class Affichage():
-    fenetre = tk.Tk()
-    fenetre.title('Projet Q-Learning Labyrinthe')
-    labyrinthe = ChargerFichier("labyrinthe.txt")
-   
- 
-    # taille d'une case
-    size = 50
-    #Nombre de case
-    nb_case = 10;
     
-     #Taille du labyrinthe
-    can_width = size * nb_case;
-    can_height = size * nb_case;
-    
-    can = tk.Canvas(fenetre, width=can_width, height=can_height)
-    can.grid()
-    for i in range(nb_case):
-        for j in range(nb_case):
-             if(labyrinthe[i][j] == 'v'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "white")
-             if(labyrinthe[i][j] == 'e'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "green")
-             if(labyrinthe[i][j] == 'm'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "grey")
-             if(labyrinthe[i][j] == 's'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "red")
-             if(labyrinthe[i][j] == 'p'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "orange")    
-             if(labyrinthe[i][j] == 'r'):
-                 can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "blue")  
-    fenetre.mainloop()
+    def __init__(self, nb_case, fenetre):
+       
+        # taille d'une case
+        self.size = 50
+        #Nombre de case
+        self.nb_case = nb_case;
+        
+         #Taille du labyrinthe
+        self.can_width = self.size * self.nb_case;
+        self.can_height = self.size * self.nb_case;
+        
+        self.can = tk.Canvas(fenetre, width=self.can_width, height=self.can_height)
+        self.can.grid()
+        
+    def chargerCanevas(self,labyrinthe):
+        for i in range(self.nb_case):
+            for j in range(self.nb_case):
+                 if(labyrinthe[i][j].type.name == 'Libre'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "white")
+                 if(labyrinthe[i][j].type.name == 'Entree'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "green")
+                 if(labyrinthe[i][j].type.name == 'Mur'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "grey")
+                 if(labyrinthe[i][j].type.name == 'Sortie'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "red")
+                 if(labyrinthe[i][j].type.name == 'Piege'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "orange")    
+                 if(labyrinthe[i][j] == 'r'):
+                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "blue")
+        return self.can 

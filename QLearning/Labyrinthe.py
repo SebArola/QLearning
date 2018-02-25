@@ -9,18 +9,24 @@ class Labyrinthe:
         self.arrive = 0
         self.depart = 0
         self.taille = taille
-        self.chargerLabyrinthe(taille)
         
-    def chargerLabyrinthe(self,taille):
+    def chargerLabyrinthe(self,lab_txt):
         #Creation manuel du labyrinthe pour avancer rapidement
-        for i in range(taille):
+        for i in range(self.taille):
             self.labyrinthe.append([])
-            for j in range(taille):
-                self.labyrinthe[i].append(Case(Type.Libre, i,j))
-        self.depart = (0,0)
-        self.arrive = (taille-1,taille-1)
-        self.labyrinthe[0][0].type = Type.Entree
-        self.labyrinthe[taille-1][taille-1].type = Type.Sortie
+            for j in range(self.taille):
+                if (lab_txt[i][j] == 'v'):
+                    self.labyrinthe[i].append(Case(Type.Libre, i,j))
+                if (lab_txt[i][j] == 'm'):
+                    self.labyrinthe[i].append(Case(Type.Mur, i,j))
+                if (lab_txt[i][j] == 's'):
+                    self.labyrinthe[i].append(Case(Type.Sortie, i,j))
+                    self.arrive = (i,j)
+                if (lab_txt[i][j] == 'e'):
+                    self.labyrinthe[i].append(Case(Type.Entree, i,j))
+                    self.depart = (i,j)
+                if (lab_txt[i][j] == 'p'):
+                    self.labyrinthe[i].append(Case(Type.Piege, i,j))
     
     def deplacement_possible(self, case):
         deplacement_possible = []
