@@ -26,19 +26,21 @@ class Affichage():
         self.can = tk.Canvas(fenetre, width=self.can_width, height=self.can_height)
         self.can.grid()
         
-    def chargerCanevas(self,labyrinthe):
+    def chargerCanevas(self,labyrinthe,pos_robot):
         for i in range(self.nb_case):
             for j in range(self.nb_case):
-                 if(labyrinthe[i][j].type.name == 'Libre'):
-                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "white")
-                 if(labyrinthe[i][j].type.name == 'Entree'):
-                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "green")
-                 if(labyrinthe[i][j].type.name == 'Mur'):
-                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "grey")
-                 if(labyrinthe[i][j].type.name == 'Sortie'):
-                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "red")
-                 if(labyrinthe[i][j].type.name == 'Piege'):
-                     self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "orange")    
-                 if(labyrinthe[i][j] == 'r'):
+                 if ((i,j) == pos_robot):
                      self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "blue")
+                 else :
+                     if(labyrinthe[i][j].type.name == 'Libre'):
+                         self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "white")
+                     if(labyrinthe[i][j].type.name == 'Entree'):
+                         self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "green")
+                     if(labyrinthe[i][j].type.name == 'Mur'):
+                         self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "grey")
+                     if(labyrinthe[i][j].type.name == 'Sortie'):
+                         self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "red")
+                     if(labyrinthe[i][j].type.name == 'Piege'):
+                         self.can.create_rectangle(j*self.size, i*self.size, j*self.size+self.size, i*self.size+self.size, fill = "orange")    
+                     
         return self.can 

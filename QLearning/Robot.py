@@ -9,7 +9,7 @@ import random
 class Robot:
     def __init__(self,labyrinthe, max_deplacement):
         self.lab = labyrinthe
-        self.case = Case(Type.Entree, self.lab.depart[0], self.lab.depart[1])
+        self.case = self.lab.labyrinthe[self.lab.depart[0]][self.lab.depart[1]]
         self.penalite = 0.99 #epsilon
         self.gamma = 0.95
         self.nb_deplacement_max = max_deplacement
