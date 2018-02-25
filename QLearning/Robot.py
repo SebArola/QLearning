@@ -29,17 +29,30 @@ class Robot:
         
     def exploration(self):
         deplacement = self.lab.deplacement_possible(self.case)
-        randi = random.randint(0, len(deplacement)-1)
-        (renfort, case_arriver) = self.lab.se_deplacer(self.case, deplacement[randi])
-        self.Q[(self.case, deplacement[randi])] = renfort + self.gamma * self.maxQ(case_arriver)[0]
-        self.case = case_arriver
+        if(len(deplacement)>0):
+            randi = random.randint(0, len(deplacement)-1)
+            (renfort, case_arriver) = self.lab.se_deplacer(self.case, deplacement[randi])
+            self.Q[(self.case, deplacement[randi])] = renfort + self.gamma * self.maxQ(case_arriver)[0]
+            self.case = case_arriver
+        else :
+            print("Dead end")
+    def exploitation(self):
+        (renfort, cMax, dMax) =  self.maxQ(self.case)
+        if (type(dMax) is not int):
+            (renfort, case_arriver) = self.lab.se_deplacer(self.case,dMax)
+            self.case = case_arriver
       
     def QLearning(self):
-        i=0
-        while(i<self.nb_deplacement_max):
+        randi = random.random()
+        if(randi >self.penalite):
+            self.exploitation()
+            print('Exploitation')
+        else :
             self.exploration()
-            i+=1
-        self.afficherQ()
+        if self.case.x == self.lab.arrive[0] and self.case.y == self.lab.arrive[1]:
+            self.case.x = self.lab.depart[0] 
+            self.case.y = self.lab.depart[1]
+        self.penalite = self.penalite - 0.001
     
     def afficherQ(self):
         for i in range(6):

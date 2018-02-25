@@ -32,19 +32,18 @@ class Labyrinthe:
         deplacement_possible = []
         for i in range(case.x-1 ,case.x+2 ):
             if i>=0 and i<self.taille :
-                if self.labyrinthe[i][case.y].type != Type.Mur :
+                if self.labyrinthe[i][case.y].type.name != 'Mur' :
                     if i-case.x==1 :
                         deplacement_possible.append(Deplacement.SUD)
                     elif i-case.x == -1:
                         deplacement_possible.append(Deplacement.NORD)
         for j in range(case.y-1, case.y+2):
             if j>=0 and j<self.taille :
-                if self.labyrinthe[case.x][j].type != Type.Mur :         
+                if self.labyrinthe[case.x][j].type.name != 'Mur' :         
                     if j-case.y == 1 :
                         deplacement_possible.append(Deplacement.EST)
                     elif j-case.y == -1 :
                         deplacement_possible.append(Deplacement.OUEST)
-        #print(deplacement_possible)          
         return deplacement_possible
      
     def se_deplacer(self, case, deplacement):
