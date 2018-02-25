@@ -49,26 +49,26 @@ class Robot:
                 print(str((c,d)) + ' ', end='')
             print()
         
-taille = 6
-taille_img = 64
-lab = Labyrinthe(taille)
-lab.afficherLab()
-robot = Robot(lab,1000)
-robot.QLearning()
-
-root = Tk()
-root.title('QLearning')
-can = Canvas(root, width=taille_img*(taille), height=taille_img*(taille), bg="black")
-#...
-img = [[]]
-for i in range(taille):
-    img.append([])
-    for j in range(taille):
-        img[i].append(PhotoImage(file='image/'+str(lab.labyrinthe[i][j].type.name)+'.png'))
-        print(img[i][j])
-        can.create_image((i*taille_img)+(taille_img/2)+1,(j*taille_img)+(taille_img/2)+1,image = img[i][j])
-        can.pack()
-        
-can.pack()
-    
-root.mainloop()
+# taille = 10
+# taille_img = 64
+# lab = Labyrinthe(taille)
+# lab.afficherLab()
+# robot = Robot(lab,1000)
+# robot.QLearning()
+# 
+# root = Tk()
+# root.title('QLearning')
+# can = Canvas(root, width=taille_img*(taille), height=taille_img*(taille), bg="black")
+# #...
+# img = [[]]
+# for i in range(taille):
+#     img.append([])
+#     for j in range(taille):
+#         img[i].append(PhotoImage(file='image/'+str(lab.labyrinthe[i][j].type.name)+'.png'))
+#         print(img[i][j])
+#         can.create_image((i*taille_img)+(taille_img/2)+1,(j*taille_img)+(taille_img/2)+1,image = img[i][j])
+#         can.pack()
+#         
+# can.pack()
+#     
+# root.mainloop()

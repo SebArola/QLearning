@@ -5,23 +5,30 @@ Created on Tue Feb 20 21:05:11 2018
 
 @author: matahi
 """
-import Tkinter as tk
+
+#import Tkinter as tk
+import tkinter as tk
 from ChargerFichier import ChargerFichier 
 
 class Affichage():
     fenetre = tk.Tk()
     fenetre.title('Projet Q-Learning Labyrinthe')
     labyrinthe = ChargerFichier("labyrinthe.txt")
-    #Taille du labyrinthe
-    can_width = 500
-    can_height = 500
+   
  
     # taille d'une case
     size = 50
+    #Nombre de case
+    nb_case = 10;
+    
+     #Taille du labyrinthe
+    can_width = size * nb_case;
+    can_height = size * nb_case;
+    
     can = tk.Canvas(fenetre, width=can_width, height=can_height)
     can.grid()
-    for i in range(10):
-        for j in range(10):
+    for i in range(nb_case):
+        for j in range(nb_case):
              if(labyrinthe[i][j] == 'v'):
                  can.create_rectangle(j*size, i*size, j*size+size, i*size+size, fill = "white")
              if(labyrinthe[i][j] == 'e'):
